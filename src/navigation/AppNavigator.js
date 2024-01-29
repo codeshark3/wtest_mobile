@@ -5,18 +5,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import RegularText from "../components/Texts/RegularText";
 // import ChartsScreen from "../screens/ChartsScreen";
 import StatsScreen from "../screens/StatsScreen";
- import TestEditScreen from "../screens/Tests/TestEditScreen";
+import TestEditScreen from "../screens/Tests/TestEditScreen";
 import TestNavigator from "./TestNavigator";
 // import NewTestButton from "./NewTestButton";
 import { colors } from "../config/colors";
 import SmallText from "../components/Texts/SmallText";
-import OfflineScreen from "../screens/offline/OfflineScreen"
+import OfflineScreen from "../screens/offline/OfflineScreen";
+import NewTestScreen from "../screens/Tests/NewTestScreen";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       headerShown: false,
+      headerStyle: {
+        height: 70,
+      },
       tabBarShowLabel: false,
       tabBarStyle: {
         position: "absolute",
@@ -25,7 +29,7 @@ const AppNavigator = () => (
         right: 0,
         backgroundColor: colors.white,
         borderRadius: 15,
-        height: 60,
+        height: 50,
         elevation: 0,
         ...styles.shadow,
       },
@@ -41,12 +45,11 @@ const AppNavigator = () => (
               name="test-tube"
               color={color}
               size={24}
-              style={{ color: focused ? colors.secondary : '#808080' }}
+              style={{ color: focused ? colors.secondary : "#808080" }}
             />
             <SmallText
               style={{
-                color: focused ? colors.secondary : '#808080' ,
-             
+                color: focused ? colors.secondary : "#808080",
               }}
             >
               TESTS
@@ -55,32 +58,32 @@ const AppNavigator = () => (
         ),
       }}
     />
-   <Tab.Screen
+    <Tab.Screen
       name="TestEdit"
-      component={TestEditScreen}
+      component={NewTestScreen}
       options={({ navigation, color, focused }) => ({
         tabBarIcon: ({ color, size, focused }) => (
-          <View style={{
-            top:Platform.OS == "ios"? -10:-20,
-           width:Platform.OS == "ios"? 50:60,
-            height:Platform.OS == "ios"? 50:60,
-            borderRadius:Platform.OS == "ios"? 25:30,
-           alignItems:"center",
-              justifyContent:"center",
-              backgroundColor: colors.secondary
-          }}>
+          <View
+            style={{
+              top: Platform.OS == "ios" ? -10 : -15,
+              width: Platform.OS == "ios" ? 50 : 60,
+              height: Platform.OS == "ios" ? 50 : 60,
+              borderRadius: Platform.OS == "ios" ? 25 : 30,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: colors.secondary,
+            }}
+          >
             <MaterialCommunityIcons
               name="plus"
               color={colors.white}
               size={40}
-             // style={{ color: focused ? colors.secondary : '#808080' }}
+              // style={{ color: focused ? colors.secondary : '#808080' }}
             />
-           
           </View>
         ),
-    
       })}
-    /> 
+    />
     <Tab.Screen
       name="Offline"
       component={OfflineScreen}
@@ -91,50 +94,49 @@ const AppNavigator = () => (
               name="access-point-network-off"
               color={color}
               size={24}
-              style={{ color: focused ? colors.secondary : '#808080' }}
+              style={{ color: focused ? colors.secondary : "#808080" }}
             />
             <SmallText
               style={{
-                color: focused ? colors.secondary : '#808080' ,
-             
+                color: focused ? colors.secondary : "#808080",
               }}
             >
-            OFFLINE
+              OFFLINE
             </SmallText>
           </View>
         ),
       }}
-     
-        // headerShown: true,
-        // headerStyle: { backgroundColor: colors.primary },
-        // headerTintColor: colors.white,
 
+      // headerShown: true,
+      // headerStyle: { backgroundColor: colors.primary },
+      // headerTintColor: colors.white,
     />
-    <Tab.Screen
-      name="Statistics"
-      component={StatsScreen}
-      options={{
-        tabBarIcon: ({ color, size, focused }) => (
-          <View style={styles.bottomTab}>
-            <MaterialCommunityIcons
-              name="finance"
-              color={color}
-              size={24}
-              style={{ color: focused ? colors.secondary : '#808080' }}
-            />
-            <SmallText
-              style={{
-                color: focused ? colors.secondary : '#808080' ,
+
+    {/* <Tab.Screen
+    //   name="Statistics"
+    //   component={StatsScreen}
+    //   options={{
+    //     tabBarIcon: ({ color, size, focused }) => (
+    //       <View style={styles.bottomTab}>
+    //         <MaterialCommunityIcons
+    //           name="finance"
+    //           color={color}
+    //           size={24}
+    //           style={{ color: focused ? colors.secondary : '#808080' }}
+    //         />
+    //         <SmallText
+    //           style={{
+    //             color: focused ? colors.secondary : '#808080' ,
              
-              }}
-            >
-             STATISTICS
-            </SmallText>
-          </View>
-        ),
-      }}  
+    //           }}
+    //         >
+    //          STATISTICS
+    //         </SmallText>
+    //       </View>
+    //     ),
+    //   }}  
      
-    />
+    // /> */}
   </Tab.Navigator>
 );
 const styles = StyleSheet.create({

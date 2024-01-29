@@ -8,7 +8,6 @@ const { primary } = colors;
 
 const RegularButton = (props) => {
   return (
-  
     <TouchableOpacity
       style={[styles.container, props.style]}
       onPress={props.onPress}
@@ -18,7 +17,6 @@ const RegularButton = (props) => {
         {props.children}
       </RegularText>
     </TouchableOpacity>
-    
   );
 };
 

@@ -1,8 +1,29 @@
 import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
 import React from "react";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import RegularText from "../Texts/RegularText";
+import { colors } from "../../config/colors";
+import SmallText from "../Texts/SmallText";
+import * as ImagePicker from "expo-image-picker"
 const RegularModal = ({ toggle, close, message, color, icon }) => {
+  const uploadImage = async () => {
+    try {
+      await ImagePicker.requestCameraPermissionsAsync()
+      let result = await ImagePicker.launchCameraAsync({
+        cameraType:ImagePicker.CameraType.back,
+        allowsEditing:true,
+        aspect:[1,1],
+        quality:1
+      })
+
+      if(!result.canceled){
+        //save image
+
+      }
+    } catch (error) {
+      
+    }
+  }
   return (
     <Modal
       animationType="slide"
@@ -12,30 +33,35 @@ const RegularModal = ({ toggle, close, message, color, icon }) => {
     >
       <View style={styles.centeredView}>
         <View style={[styles.modalView, styles.modal2]}>
-          <Ionicons name={icon} size={70} color={color} />
-          <RegularText
-            style={{
-              color: color,
-              fontWeight: "bold",
-              fontSize: 20,
-              marginVertical: 10,
-            }}
-          >
-            {message}
-          </RegularText>
+        
+        <View style={{flexDirection:"row",justifyContent:"center", alignItems:"center"}}>
+          <Pressable onPress={()=> {uploadImage()}} style={{marginHorizontal:10}}>
+            <MaterialCommunityIcons name="camera-outline" size = {35} color={colors.secondary}/>
+          <SmallText>Camera</SmallText>
+          </Pressable>
+          <Pressable onPress={()=> {}}  style={{marginHorizontal:10}}>
+            <MaterialCommunityIcons name="image-outline" size = {35} color={colors.secondary}/>
+          <SmallText>Gallery</SmallText>
+          </Pressable>
+          <Pressable onPress={()=> {}}  style={{marginHorizontal:10}}>
+            <MaterialCommunityIcons name="trash-can-outline" size = {35} color={colors.secondary}/>
+          <SmallText>Delete</SmallText>
+          </Pressable>
+        </View>
           <Pressable
             style={{
-              width: 100,
+              width: 50,
               height: 50,
-              backgroundColor: color,
+              backgroundColor: colors.accent,
               justifyContent: "center",
               alignItems: "center",
               elevation: 5,
               borderRadius: 5,
+              marginTop:20
             }}
             onPress={close}
           >
-            <RegularText>Done</RegularText>
+            <RegularText>Cancel</RegularText>
           </Pressable>
         </View>
       </View>

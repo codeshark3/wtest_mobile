@@ -7,6 +7,8 @@ export const colors = {
   // accent:'#00adb5',
   darkGrey: "#111827",
   lightGrey: "#6b7280",
+
+  light: "#f8f4f4",
   white: "#fff",
   black: "#000",
   success: "#22c55e",

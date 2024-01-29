@@ -14,19 +14,12 @@ import SmallText from "../Texts/SmallText";
 const { primary, tertiary, secondary } = colors;
 
 const NormalTextInput = ({ label, ...props }) => {
-
- 
-  
-
   const customOnFocus = () => {
     props?.onFocus;
-    
   };
 
   return (
     <View>
-     
-
       <SmallText>{label}</SmallText>
       <TextInput
         {...props}
@@ -34,24 +27,20 @@ const NormalTextInput = ({ label, ...props }) => {
         style={{
           backgroundColor: colors.white,
           color: colors.secondary,
-          padding: 15,
+          padding: 10,
           paddingLeft: 15,
           paddingRight: 10,
           borderRadius: 10,
           fontSize: 16,
-          height: 60,
+          height: 55,
           marginTop: 3,
           marginBottom: 10,
 
           borderColor: secondary,
           borderWidth: 2,
         }}
-     
         onFocus={customOnFocus}
-       
       />
-
-     
     </View>
   );
 };
@@ -75,5 +64,4 @@ const styles = StyleSheet.create({
     borderColor: secondary,
     borderWidth: 2,
   },
- 
 });

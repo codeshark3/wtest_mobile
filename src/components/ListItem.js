@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-// import View from "../containers/View";
+
 import RegularText from "../components/Texts/RegularText";
 
 import { colors } from "../config/colors";
@@ -49,7 +49,7 @@ export default ListItem;
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: colors.tertiary,
+    borderColor: colors.lightGrey,
     //#282828
     // borderBottomWidth: StyleSheet.hairlineWidth,
     borderRadius: 10,

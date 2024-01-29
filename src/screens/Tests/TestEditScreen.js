@@ -8,14 +8,17 @@ import { Formik,resetForm } from "formik";
 import MsgBox from "../../components/Texts/MsgBox";
 import { colors } from "../../config/colors";
 import RegularButton from "../../components/Buttons/RegularButton";
-import RowContainer from "../../components/RowContainer";
-import PressableText from "../../components/Texts/PressableText";
+import RegularModal from "../../components/Modals/RegularModal";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
+import * as ImagePicker from "expo-image-picker"
+import TestImagePicker from "../../components/TestImagePicker";
 const TestEditScreen = () => {
   const [message, setMessage] = useState("");
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+ 
 
+ 
   const handleUpload = async (values, setSubmitting) => {
     try {
       setMessage(null);
@@ -43,7 +46,7 @@ const TestEditScreen = () => {
         </RegularText>
 
         <Formik
-          initialValues={{ name: "", age: "",location:"", gender:"" }}
+          initialValues={{ name: "", age: "",location:"", gender:"", onchoImage:null }}
           onSubmit={(values, { setSubmitting ,resetForm}) => {
             if (values.name == "" || values.age == "" || values.location == "" || values.gender == "") {
               setMessage("Please fill all fields");
@@ -102,10 +105,8 @@ const TestEditScreen = () => {
                 value={values.gender}
                 style={{ marginBottom: 25 }}
               />
-
-              <TouchableOpacity>
-                <MaterialCommunityIcons name="camera-outline" size={40} color={colors.secondary} />
-              </TouchableOpacity>
+              <TestImagePicker name="onchoImage"/>
+             
             <Image style={{width:150,height:150, borderWidth:2, borderColor:"#000"}}  src=""/>
 
 
@@ -126,6 +127,11 @@ const TestEditScreen = () => {
             </>
           )}
         </Formik>
+        <RegularModal toggle={isModalVisible} close={() => {
+              setModalVisible(!isModalVisible);
+            }}/>
+
+       
       </KeyboardAvoidingContainer>
       
       </Screen>
